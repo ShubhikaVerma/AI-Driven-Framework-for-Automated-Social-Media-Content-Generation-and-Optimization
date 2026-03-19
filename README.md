@@ -8,8 +8,7 @@ An end-to-end multimodal content generation and evaluation system for COVID-19 n
 3. [Hardware Requirements](#hardware-requirements)
 4. [Software Requirements](#software-requirements)
 5. [Quick Start](#quick-start)
-6. [Dataset Format](#dataset-format)
-7. [Project Structure](#project-structure)
+6. [Project Structure](#project-structure)
 
 ---
 
@@ -55,30 +54,47 @@ The minimum configuration requires an Intel i5 8th Generation or AMD Ryzen 5 pro
 
 ## Software Requirements
 
-**Python**: 3.10–3.11 (project uses Python 3.11 locally; Kaggle/Colab default: 3.10)
+## Software Requirements
 
-**Platform support**:
-- Cloud GPU: Kaggle Notebooks (Linux Debian-based, Python 3.10)
-- Local: Windows 10/11, Python 3.11
-
-### Core Dependencies
+### Text Generation
 
 | Library | Purpose |
 |---------|---------|
-| `transformers` | LLaMA model inference; loading pre-trained language models |
+| `transformers` | LLaMA 3.1-8B Instruct model inference |
 | `sentencepiece` | Tokenization backend for transformer models |
 | `accelerate` | Optimized inference for faster transformer computations |
-| `scikit-learn` | TF-IDF vectorization, cosine similarity retrieval |
-| `numpy` / `pandas` | Dataset preprocessing, metric aggregation, results storage |
-| `nltk` / `re` | Text cleaning, tokenization, special character removal |
-| `diffusers` | Stable Diffusion pipeline implementation |
-| `xformers` | Memory-efficient attention mechanisms |
+
+### Text Evaluation Metrics
+
+| Metric | Library | Purpose |
+|--------|---------|---------|
+| ROUGE-1/2/L | `rouge-score` | Lexical overlap between generated and reference text |
+| BERTScore | `bert-score` | Semantic similarity using RoBERTa-large contextual embeddings |
+| SBERT Similarity | `sentence-transformers` | Query-to-summary semantic matching via all-MiniLM-L6-v2 |
+
+### Image Generation
+
+| Model | Inference Steps | VRAM Requirement |
+|-------|:--------------:|:----------------:|
+| Stable Diffusion 1.5 | 25–50 | 6 GB |
+| Stable Diffusion 2.1 | 30–50 | 8 GB |
+| Stable Diffusion Turbo | 4–8 | 4 GB |
+
+| Library | Purpose |
+|---------|---------|
+| `diffusers` | Stable Diffusion pipeline; model loading and inference |
+| `xformers` | Memory-efficient attention (30–40% VRAM reduction) |
 | `torch` (CUDA) | GPU-accelerated tensor operations |
-| `Pillow` | Image file I/O, format conversion |
-| `streamlit` | Interactive web UI |
-| `sentence-transformers` | SBERT semantic similarity (all-MiniLM-L6-v2) |
-| `bert-score` | BERTScore evaluation (RoBERTa-large) |
-| `rouge-score` | ROUGE-1/2/L lexical overlap metrics |
+| `Pillow (PIL)` | Image I/O, format conversion |
+
+### Image-Text Alignment
+
+| Component | Details |
+|-----------|---------|
+| Model | CLIP ViT-B/32 (63M parameters) |
+| Similarity | Cosine similarity between text and image embeddings |
+| Robustness | Negative sampling (unrelated images) for alignment ratio |
+
 
 Install all dependencies with:
 
@@ -137,24 +153,6 @@ Date,Headline,Description,Covid Status,Image URL,Source,Sentiment
 > See the [System Modules](#system-modules) section for details on what each component will provide.
 
 ---
-
-## Dataset Format
-
-The system uses a dataset of 4,073 COVID-19 news headlines extracted from the InShorts website (03-Mar-2020 to 11-Apr-2020).
-
-Each record includes the following fields:
-
-| Field | Purpose |
-|-------|---------|
-| `Date` | Publication date; used for temporal filtering and organization |
-| `Headline` | News headline; primary text source for summarization and image prompt generation |
-| `Description` | Full article body and content |
-| `Covid Status` | Classification of article relevance to COVID-19 |
-| `Image URL` | URL to the original/ground truth image; enables multimodal alignment evaluation |
-| `Source` | News source website reference (e.g., reuters.com, bbc.com) |
-| `Sentiment` | Sentiment classification (positive, neutral, negative) of article tone |
-
-Each record maintains a consistent ID throughout text generation, image generation, and evaluation stages, enabling traceability and aggregation of results.
 
 
 ## Project Structure
