@@ -9,6 +9,7 @@ An end-to-end multimodal content generation and evaluation system for COVID-19 n
 4. [Software Requirements](#software-requirements)
 5. [Quick Start](#quick-start)
 6. [Project Structure](#project-structure)
+7. [Pipeline Overview](#pipeline-overview)
 
 ---
 
@@ -52,7 +53,7 @@ The minimum configuration requires an Intel i5 8th Generation or AMD Ryzen 5 pro
 
 ---
 
-## Software Requirements
+
 
 ## Software Requirements
 
@@ -150,7 +151,7 @@ Date,Headline,Description,Covid Status,Image URL,Source,Sentiment
 > streamlit run app.py
 > ```
 >
-> See the [System Modules](#system-modules) section for details on what each component will provide.
+> See the [Pipeline Overview](#pipeline-overview) section for details on what each component will provide.
 
 ---
 
