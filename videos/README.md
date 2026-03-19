@@ -1,11 +1,127 @@
-# Videos
 
-This directory contains demonstration and results videos for the project.
+# 📊 Results and Analysis
 
-## v46 – Section 7.2.1: Comparison with Baseline
+---
 
-**File:** `v46_comparison_with_baseline.mp4`
+📹 **Video Demo:**  
 
-This video demonstrates the evaluation results from Section 7.2.1 of the report, comparing the standard LLaMA prompt against the Metadata-Aware prompt across key metrics (SBERT Similarity, ROUGE-1/2/L F1, and BERTScore). It provides a visual walkthrough of Table 8 (Prompt Evaluation Baseline) and discusses the observed improvements from metadata-aware prompting.
+👉 [Watch Video]![Untitled design](https://github.com/user-attachments/assets/eb77863b-2b7b-436a-8d2e-c57d36912af2)
 
-> **Note:** The video file `v46_comparison_with_baseline.mp4` should be placed in this directory. Due to file size constraints, large video files are not tracked by Git. Store the video in a shared location (e.g., Google Drive, OneDrive) and update this README with the download link.
+
+## 🔹 7.2 Text Generation Evaluation
+
+### 📌 7.2.1 Baseline vs Metadata-Aware Prompt
+
+
+
+| Metric | Baseline | Meta-Aware | Δ Improvement |
+|--------|----------|------------|--------------|
+| SBERT Similarity | 0.7379 | **0.7659** | ↑ +0.0280 |
+| ROUGE-1 F1 | 0.3825 | **0.3940** | ↑ +0.0115 |
+| ROUGE-2 F1 | 0.1317 | **0.1512** | ↑ +0.0195 |
+| ROUGE-L F1 | 0.2656 | **0.2751** | ↑ +0.0095 |
+| BERTScore Precision | 0.6813 | **0.6853** | ↑ +0.0040 |
+| BERTScore Recall | 0.6437 | **0.6519** | ↑ +0.0082 |
+| BERTScore F1 | 0.6617 | **0.6678** | ↑ +0.0061 |
+
+✅ **Key Insight:**  
+Metadata-aware prompting consistently improves semantic similarity and lexical alignment.
+
+---
+
+### 📌 7.2.2 Prompt Strategy Comparison
+
+| Metric | Structured Instruction | Detailed Guidelines ⭐ | Role-Based Expert |
+|--------|----------------------|----------------------|------------------|
+| SBERT Similarity | 0.7465 | **0.7572** | 0.6980 |
+| ROUGE-1 | 0.3639 | **0.3752** | 0.3214 |
+| ROUGE-2 | 0.1305 | **0.1353** | 0.1092 |
+| ROUGE-L | 0.2456 | **0.2559** | 0.2227 |
+| BERTScore F1 | 0.6418 | **0.6472** | 0.6029 |
+
+✅ **Key Insight:**  
+- **Best Performance:** Detailed Guidelines  
+- Role-based prompting improves style but reduces factual consistency  
+
+---
+
+### 📌 7.2.3 Final Test Evaluation
+
+| Metric | Score |
+|--------|------|
+| SBERT Mean | **0.7866** |
+| ROUGE-1 F1 | 0.4204 |
+| ROUGE-2 F1 | 0.1649 |
+| ROUGE-L F1 | 0.2918 |
+| BERTScore Precision | 0.6997 |
+| BERTScore Recall | 0.6596 |
+| BERTScore F1 | 0.6788 |
+
+✅ **Key Insight:**  
+The model achieves **strong semantic alignment and factual consistency**, indicating high-quality summarization performance.
+
+---
+
+### 📌 7.2.4 Qualitative Example
+
+| ID | Headline | SBERT | BERT F1 |
+|----|----------|------|--------|
+| 3841 | KFC India donates 1M meals during COVID-19 | **0.93** | **0.74** |
+
+🧠 **Observation:**  
+The generated summary closely matches the reference while preserving meaning and readability.
+
+---
+
+## 🖼️ 7.3 Image–Text Alignment (CLIP)
+
+| Model | Backbone | Cosine Similarity ↑ | Contrast Ratio ↑ | Notes |
+|------|----------|--------------------|------------------|------|
+| SD-1.5 Baseline | SD-1.5 | **0.280** | 1.290 | Stable & accurate |
+| SD-2.1 Enhanced | SD-2.1 | 0.274 | 1.265 | Metadata + re-ranking |
+| SD-2.1 Optimized | SD-2.1 | 0.230 | **1.606** | High diversity |
+| SD-Turbo | SD-Turbo | 0.278 | 1.318 | ⚡ Fast & efficient |
+
+✅ **Key Insight:**  
+- SD-1.5 → best semantic alignment  
+- SD-Turbo → fastest with minimal performance drop  
+
+---
+
+## 🖼️ 7.4 Image–Image Similarity
+
+| Model | CLIP Similarity ↑ | SSIM ↑ | MSE ↓ |
+|------|------------------|--------|------|
+| SD-1.5 Baseline | **0.5147** | **0.1747** | 0.1770 |
+| SD-2.1 | 0.4946 | 0.1693 | 0.1647 |
+| SD-Turbo | 0.4695 | 0.1097 | **0.1581** |
+
+✅ **Key Insight:**  
+- SD-1.5 → best semantic preservation  
+- SD-Turbo → fastest, slight structural compromise  
+
+---
+
+## 🖼️ 7.5 Qualitative Image Comparison
+
+| Model | CLIP Score | Description |
+|------|-----------|------------|
+| SD-Turbo | **0.35** | High visual richness & context alignment |
+| Ground Truth | 0.281 | Reference baseline |
+
+🧠 **Observation:**  
+SD-Turbo generates visually compelling and context-aware images with strong alignment to text prompts.
+
+---
+
+# 🚀 Final Takeaways
+
+- Metadata-aware prompting improves **semantic + factual quality**
+- Prompt design significantly impacts performance (**Detailed > Role-based**)
+- Strong text generation performance (**SBERT ≈ 0.78**)
+- Effective multimodal alignment using CLIP and Stable Diffusion
+
+---
+
+
+
