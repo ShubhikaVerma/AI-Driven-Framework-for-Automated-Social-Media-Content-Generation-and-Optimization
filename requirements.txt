@@ -5,7 +5,8 @@ scikit-learn
 numpy
 pandas
 nltk
-re
+joblib
+tabulate
 diffusers
 xformers
 torch
