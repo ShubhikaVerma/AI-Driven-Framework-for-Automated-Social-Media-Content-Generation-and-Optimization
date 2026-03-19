@@ -1,0 +1,15 @@
+transformers
+sentencepiece
+accelerate
+rouge-score
+bert-score
+sentence-transformers
+scikit-learn
+numpy
+pandas
+nltk
+diffusers
+xformers
+torch
+Pillow
+streamlit
