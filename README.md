@@ -166,7 +166,7 @@ Each record maintains a consistent ID throughout text generation, image generati
 
 ## System Modules
 
-> **Coming soon:** The `modules/` directory will contain the full implementation code for each module below, along with module-specific README files and example notebooks. The `docs/` directory will include API references, experiment logs, dataset samples, and step-by-step worked examples. Once these directories are available, they will be linked directly from each module section below.
+
 
 ### Module 1: Data Collection
 
@@ -261,10 +261,7 @@ Contributions are welcome! Here is what is planned and where your help would be 
 - **`data/`**: Add dataset samples, preprocessing scripts, or links to the InShorts COVID-19 dataset.
 - **`docs/`**: Add API references, experiment results, worked examples, or deployment documentation.
 
-> *Coming soon: Detailed contribution guidelines, code style guide, and issue templates will be added. In the meantime, please open an issue or pull request describing your proposed change.*
+
 
 ---
 
-## License
-
-> *Coming soon: License information will be added here. Please check back or open an issue if you have questions about usage.*
