@@ -1,58 +1,50 @@
-# Results and Analysis
-
-## 7.2 Text Generation Evaluation
-
-### 7.2.1 Comparison with Baseline
-
-> 📹 **Video Reference:** [v46 – Section 7.2.1: Comparison with Baseline](./videos/v46_comparison_with_baseline.mp4)
-
-Table 8 presents the comparison between the standard LLaMA prompt and the Metadata-Aware prompt.
-
-**Table 8: Prompt Evaluation Baseline**
-
-| Metric | Baseline | Meta-Aware |
-|---|---|---|
-| SBERT Similarity | 0.7379 | 0.7659 |
-| ROUGE-1 F1 | 0.3825 | 0.3940 |
-| ROUGE-2 F1 | 0.1317 | 0.1512 |
-| ROUGE-L F1 | 0.2656 | 0.2751 |
-| BERTScore Precision | 0.6813 | 0.6853 |
-| BERTScore Recall | 0.6437 | 0.6519 |
-| BERTScore F1 | 0.6617 | 0.6678 |
-
-The data demonstrates that metadata-aware prompting consistently increases the semantic evaluation metric and lexicon metric. The observed improvement is modest and it should be noted that adding keywords or structured contextual data will help the model (summary) generate text that is closer to the source text.
+# 📊 Results and Analysis
 
 ---
 
-### 7.2.2 Comparison Across Prompt Styles
+## 🔹 7.2 Text Generation Evaluation
 
-Table 9 presents the comparison across three enhanced prompting strategies.
+### 📌 7.2.1 Baseline vs Metadata-Aware Prompt
 
-**Table 9: Prompt Evaluation (Different Prompt Styles)**
+📹 **Video Demo:**  
+👉 [Watch Comparison Video](https://your-link-here)
 
-| Metric | Structured Instruction | Detailed Guidelines | Role-Based Expert |
-|---|---|---|---|
-| SBERT Similarity | 0.7465 | 0.7572 | 0.6980 |
-| ROUGE-1 | 0.3639 | 0.3752 | 0.3214 |
-| ROUGE-2 | 0.1305 | 0.1353 | 0.1092 |
-| ROUGE-L | 0.2456 | 0.2559 | 0.2227 |
-| BERTScore F1 | 0.6418 | 0.6472 | 0.6029 |
+| Metric | Baseline | Meta-Aware | Δ Improvement |
+|--------|----------|------------|--------------|
+| SBERT Similarity | 0.7379 | **0.7659** | ↑ +0.0280 |
+| ROUGE-1 F1 | 0.3825 | **0.3940** | ↑ +0.0115 |
+| ROUGE-2 F1 | 0.1317 | **0.1512** | ↑ +0.0195 |
+| ROUGE-L F1 | 0.2656 | **0.2751** | ↑ +0.0095 |
+| BERTScore Precision | 0.6813 | **0.6853** | ↑ +0.0040 |
+| BERTScore Recall | 0.6437 | **0.6519** | ↑ +0.0082 |
+| BERTScore F1 | 0.6617 | **0.6678** | ↑ +0.0061 |
 
-Using a prompting format based on the 'Detailed Guidelines' provides the most semantic similarity of all the techniques evaluated in this study. This finding indicates that providing both a detailed and explicit set of structured instructions creates a clearer framework within which the model can operate. However, using the 'Role-Based Expert' method increased stylistic improvements, but scored poorly in factual consistency compared to the 'Detailed Guidelines' method.
+✅ **Key Insight:**  
+Metadata-aware prompting consistently improves semantic similarity and lexical alignment.
 
 ---
 
-### 7.2.3 Final Test Evaluation
+### 📌 7.2.2 Prompt Strategy Comparison
 
-The meteoric rise of this technology can be directly tied to the application of metadata (e.g., keyword indicators, topical labels and structured prompt cue indicators) to inform the generation of summaries. As a result, these summaries, when compared to those that use baseline prompts without metadata or guided input information, are more indicative of reality, contain higher levels of accuracy and factual correctness and have a closer correlation to what a human writer would present when looking for affirmative confirmation of facts.
+| Metric | Structured Instruction | Detailed Guidelines ⭐ | Role-Based Expert |
+|--------|----------------------|----------------------|------------------|
+| SBERT Similarity | 0.7465 | **0.7572** | 0.6980 |
+| ROUGE-1 | 0.3639 | **0.3752** | 0.3214 |
+| ROUGE-2 | 0.1305 | **0.1353** | 0.1092 |
+| ROUGE-L | 0.2456 | **0.2559** | 0.2227 |
+| BERTScore F1 | 0.6418 | **0.6472** | 0.6029 |
 
-Table 10 reports the final evaluation metrics computed on the complete test set.
+✅ **Key Insight:**  
+- **Best Performance:** Detailed Guidelines  
+- Role-based prompting improves style but reduces factual consistency  
 
-**Table 10: Final Text Evaluation**
+---
+
+### 📌 7.2.3 Final Test Evaluation
 
 | Metric | Score |
-|---|---|
-| SBERT Mean | 0.7866 |
+|--------|------|
+| SBERT Mean | **0.7866** |
 | ROUGE-1 F1 | 0.4204 |
 | ROUGE-2 F1 | 0.1649 |
 | ROUGE-L F1 | 0.2918 |
@@ -60,68 +52,73 @@ Table 10 reports the final evaluation metrics computed on the complete test set.
 | BERTScore Recall | 0.6596 |
 | BERTScore F1 | 0.6788 |
 
-The efficacy of the proposed metadata-aware summarisation approach was clearly demonstrated through the final assessment findings. The results were generated using the SBERT mean score of 0.7866, which indicates a strong degree of semantical similarity between the results generated using the proposed approach and those created using actual reference documents.
-
-Lexical similarity metrics provide further insight into the system's performance. The ROUGE-1 F1 score is 0.4204, the ROUGE-2 F1 score is 0.1649, and the ROUGE-L F1 score is 0.2918.
-
----
-
-### 7.2.4 Qualitative Examples
-
-Table 11 displays a case where the generated summary closely matches the ground truth (SBERT Similarity: 0.93, BERT-F1: 0.74). This confirms that the model paraphrases accurately while preserving meaning.
-
-**Table 11: Qualitative Generated Result**
-
-| ID | Headline (Query) | Generated Summary (LLaMA Output) | Reference Summary | SBERT | BERT F1 |
-|---|---|---|---|---|---|
-| 3841 | KFC India to donate 1 million meals amid COVID-19 lockdown | KFC India has announced that it will donate 1 million meals to those in need amid the COVID-19 lockdown. The initiative aims to support the vulnerable sections of society during this challenging time. The meals will be distributed through various NGOs and community groups. | KFC India on Thursday announced that it has pledged to donate 1 million meals to help the needy amid the ongoing nationwide COVID-19 lockdown. "These meals support migrant workers and daily wage earners, who are struggling to...afford meals during the lockdown. Together in this fight against COVID-19, we'll get through stronger & better," KFC India tweeted. | 0.93 | 0.74 |
+✅ **Key Insight:**  
+The model achieves **strong semantic alignment and factual consistency**, indicating high-quality summarization performance.
 
 ---
 
-## 7.3 Image–Text Alignment Results
+### 📌 7.2.4 Qualitative Example
 
-CLIP (Contrastive Language–Image Pretraining) cosine similarity is applied to assess how well generated images match the generated text (summaries/prompts). All three Stable Diffusion variants were evaluated as shown in Table 12.
+| ID | Headline | SBERT | BERT F1 |
+|----|----------|------|--------|
+| 3841 | KFC India donates 1M meals during COVID-19 | **0.93** | **0.74** |
 
-**Table 12: Image–Text Evaluation Across SD Variants**
-
-| Model | Backbone | Cosine Similarity ↑ | Contrast Ratio ↑ | Key Features |
-|---|---|---|---|---|
-| SD-1.5 Baseline | SD-1.5 | 0.280 | 1.290 | Simple prompts, no re-ranking |
-| SD-2.1 Enhanced | SD-2.1 | 0.274 | 1.265 | Metadata prompts + k6 re-ranking |
-| SD-2.1 Optimized | SD-2.1 | 0.230 | 1.606 | Metadata + k8 expansion |
-| SD-Turbo | SD-Turbo | 0.278 | 1.318 | Fastest; metadata-aware prompting |
-
-SD-1.5 and SD-Turbo perform similarly in semantic alignment with text. SD-2.1 Optimized trades accuracy for diversity and contrast. SD-Turbo is significantly faster with minimal CLIP degradation.
+🧠 **Observation:**  
+The generated summary closely matches the reference while preserving meaning and readability.
 
 ---
 
-## 7.4 Image–Image Similarity Results (Ground Truth vs Generated)
+## 🖼️ 7.3 Image–Text Alignment (CLIP)
 
-To evaluate how close generated images are to real dataset images, the following metrics were computed on 150 matched pairs:
+| Model | Backbone | Cosine Similarity ↑ | Contrast Ratio ↑ | Notes |
+|------|----------|--------------------|------------------|------|
+| SD-1.5 Baseline | SD-1.5 | **0.280** | 1.290 | Stable & accurate |
+| SD-2.1 Enhanced | SD-2.1 | 0.274 | 1.265 | Metadata + re-ranking |
+| SD-2.1 Optimized | SD-2.1 | 0.230 | **1.606** | High diversity |
+| SD-Turbo | SD-Turbo | 0.278 | 1.318 | ⚡ Fast & efficient |
 
-**Table 13: Image–Image Similarity Evaluation**
+✅ **Key Insight:**  
+- SD-1.5 → best semantic alignment  
+- SD-Turbo → fastest with minimal performance drop  
 
-| Model | CLIP Image–Image Similarity ↑ | SSIM ↑ | MSE ↓ |
-|---|---|---|---|
-| SD-1.5 Baseline | 0.5147 | 0.1747 | 0.1770 |
+---
+
+## 🖼️ 7.4 Image–Image Similarity
+
+| Model | CLIP Similarity ↑ | SSIM ↑ | MSE ↓ |
+|------|------------------|--------|------|
+| SD-1.5 Baseline | **0.5147** | **0.1747** | 0.1770 |
 | SD-2.1 | 0.4946 | 0.1693 | 0.1647 |
-| SD-Turbo | 0.4695 | 0.1097 | 0.1581 |
+| SD-Turbo | 0.4695 | 0.1097 | **0.1581** |
 
-SD-1.5 best preserves semantic elements relative to the reference images. SD-2.1 provides the most consistent pixel-level reconstruction. SD-Turbo prioritizes speed, leading to structural compromises but competitive MSE as shown in Table 13.
+✅ **Key Insight:**  
+- SD-1.5 → best semantic preservation  
+- SD-Turbo → fastest, slight structural compromise  
 
 ---
 
-## 7.5 Qualitative Image Comparisons
+## 🖼️ 7.5 Qualitative Image Comparison
 
-A side-by-side visual evaluation further demonstrates the difference among the models as shown in Table 14. When comparing news headline images, SD-Turbo generated a wide variety of vivid imagery while SD-1.5 relied on a more conservative and realistic depiction. Ground-truth images allow researchers to determine if there are any inconsistencies between an image's objects, background, or general context. They provide a reference point against which all generated images can be compared to ensure that they are accurate, relevant, and contextualized within the news article being reported.
+| Model | CLIP Score | Description |
+|------|-----------|------------|
+| SD-Turbo | **0.35** | High visual richness & context alignment |
+| Ground Truth | 0.281 | Reference baseline |
 
-The example above is an article regarding the state of Rajasthan's government plan to deploy 400 outdoor patient department (OPD) vans. This was done to help treat patients who have non-COVID related diseases while COVID-19 continues to ravage the country. Within this article, the following points have been highlighted: enhanced access to improved public health care; mobile units to treat patients; and, a government program to reduce the amount of time patients are waiting for treatment.
+🧠 **Observation:**  
+SD-Turbo generates visually compelling and context-aware images with strong alignment to text prompts.
 
-This statistical data corresponds to the increased CLIP similarity score (0.35) between SD-Turbo's generated images and the news article description.
+---
 
-**Table 14: Text-Image Evaluation**
+# 🚀 Final Takeaways
 
-| Model | CLIP Score | Caption |
-|---|---|---|
-| SD-Turbo | 0.35 | Rajasthan has deployed 400 OPD vans to treat other diseases amid the COVID-19 pandemic. The move aims to reduce the burden on hospitals and ensure that patients receive timely treatment for non-COVID-19 diseases. The state government has taken this step to ensure that patients do not have to wait for long periods. |
-| Baseline News | 0.281 | _(Ground truth reference image)_ |
+- Metadata-aware prompting improves **semantic + factual quality**
+- Prompt design significantly impacts performance (**Detailed > Role-based**)
+- Strong text generation performance (**SBERT ≈ 0.78**)
+- Effective multimodal alignment using CLIP and Stable Diffusion
+
+---
+
+# 📌 Notes
+
+- Large videos are hosted externally due to GitHub size limits  
+- Replace placeholder links with your actual video/demo links  
